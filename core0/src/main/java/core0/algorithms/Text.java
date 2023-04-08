@@ -4,7 +4,35 @@ public final class Text {
   private Text() {
   }
 
-  public static int[] getFrequencyOfDigits(String text) {
+  public static String maxWord(String text) {
+    throw new UnsupportedOperationException();
+  }
+
+  public static char minFrequentLetter(String text) {
+    int[] frequency = getLettersFrequency(text);
+    int minIndex = 0;
+    for (int i = 1; i < frequency.length; i++) {
+      if (frequency[i] < frequency[minIndex]) {
+        minIndex = i;
+      }
+    }
+
+    return (char) ('A' + minIndex);
+  }
+
+  public static char maxFrequentLetter(String text) {
+    int[] frequency = getLettersFrequency(text);
+    int maxIndex = 0;
+    for (int i = 1; i < frequency.length; i++) {
+      if (frequency[i] > frequency[maxIndex]) {
+        maxIndex = i;
+      }
+    }
+
+    return (char) ('A' + maxIndex);
+  }
+
+  public static int[] getDigitsFrequency(String text) {
     int[] frequency = new int[10];
     for (int i = 0; i < text.length(); i++) {
       char c = text.charAt(i);
@@ -16,7 +44,7 @@ public final class Text {
     return frequency;
   }
 
-  public static int[] getFrequencyOfAlphabets(String text) {
+  public static int[] getLettersFrequency(String text) {
     int[] frequency = new int[26];
     for (int i = 0; i < text.length(); i++) {
       char c = text.charAt(i);
@@ -31,7 +59,7 @@ public final class Text {
 
   public static int countDigits(String text) {
     int sum = 0;
-    int[] frequency = getFrequencyOfDigits(text);
+    int[] frequency = getDigitsFrequency(text);
     for (int i = 1; i < frequency.length; i++) {
       sum += frequency[i];
     }
@@ -39,9 +67,9 @@ public final class Text {
     return sum;
   }
 
-  public static int countAlphabets(String text) {
+  public static int countLetters(String text) {
     int sum = 0;
-    int[] frequency = getFrequencyOfAlphabets(text);
+    int[] frequency = getLettersFrequency(text);
     for (int i = 1; i < frequency.length; i++) {
       sum += frequency[i];
     }
@@ -51,7 +79,7 @@ public final class Text {
 
   public static int countVowels(String text) {
     int s = 0;
-    int[] f = getFrequencyOfAlphabets(text);
+    int[] f = getLettersFrequency(text);
     // ___a_______e_____i______o_______u___
     s = f[1] + f[5] + f[9] + f[15] + f[21];
 
@@ -60,7 +88,7 @@ public final class Text {
 
   public static int countConsonants(String text) {
     int sum = 0;
-    int[] frequency = getFrequencyOfAlphabets(text);
+    int[] frequency = getLettersFrequency(text);
     for (int i = 1; i < frequency.length; i++) {
       // _a_________e_________i_________o__________u_
       if (i == 1 || i == 5 || i == 9 || i == 15 || i == 21) {
@@ -89,6 +117,21 @@ public final class Text {
     count += 1;
 
     return count;
+  }
+
+  public static String toggleCase(String text) {
+    char[] array = text.toCharArray();
+    for (int i = 0; i < array.length; i++) {
+      char c = array[i];
+      if (Character.isUpperCase(c)) {
+        c = Character.toLowerCase(c);
+      } else if (Character.isLowerCase(c)) {
+        c = Character.toUpperCase(c);
+      }
+      array[i] = c;
+    }
+
+    return new String(array);
   }
 
   public static String toTitleCase(String text) {
@@ -124,6 +167,25 @@ public final class Text {
     return new String(array);
   }
 
+  public static String removeDuplicateLetter(String text) {
+    int[] frequency = getLettersFrequency(text);
+    StringBuilder builder = new StringBuilder();
+
+    for (int tIndex = 0; tIndex < text.length(); tIndex += 1) {
+      char oc = text.charAt(tIndex);
+      char uc = Character.toUpperCase(oc);
+      if (Character.isLetter(uc)) {
+        int fIndex = uc - 'A';
+        if (frequency[fIndex] > 0) {
+          builder.append(oc);
+          frequency[fIndex] = 0;
+        }
+      }
+    }
+
+    return builder.toString();
+  }
+
   public static String[] getTokens(String text) {
     return text.split(" ");
   }
@@ -139,7 +201,7 @@ public final class Text {
   }
 
   public static boolean isAnagram(String textA, String textB) {
-    int[] frequency = getFrequencyOfAlphabets(textA);
+    int[] frequency = getLettersFrequency(textA);
     for (int i = 0; i < textA.length(); i++) {
       char c = Character.toUpperCase(textB.charAt(i));
       frequency[c - 'A']--;
