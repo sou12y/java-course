@@ -1,0 +1,18 @@
+{
+  "editor.fontLigatures": true,
+  // "editor.fontSize": 18,
+  "explorer.autoReveal": false,
+  "files.exclude": {
+    "**/.git*": true,
+    "{**/checks.xml}": true,
+    "{**/gradle*}": true,
+    "{**/resources,**/test}": true
+  },
+  "git.countBadge": "off",
+  "git.decorations.enabled": false,
+  "java.inlayHints.parameterNames.enabled": "none",
+  "problems.decorations.enabled": false,
+  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
+  "workbench.preferredDarkColorTheme": "GitHub Dark Colorblind (Beta)",
+  "workbench.preferredLightColorTheme": "GitHub Light Colorblind (Beta)"
+}

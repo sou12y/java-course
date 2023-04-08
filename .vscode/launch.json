@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Core 0",
+      "request": "launch",
+      "mainClass": "App",
+      "projectName": "core0"
+    },
+    {
+      "type": "java",
+      "name": "Core 1",
+      "request": "launch",
+      "mainClass": "App",
+      "projectName": "core1"
+    },
+    {
+      "name": "Launch File",
+      "type": "java",
+      "request": "launch",
+      "mainClass": "${file}"
+    }
+  ]
+}

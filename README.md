@@ -1,1 +1,1 @@
-# java-course
+# Java Course
